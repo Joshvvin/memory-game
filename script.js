@@ -1,5 +1,5 @@
-const gameContainer = document.getElementsById("game");
-
+const gameContainer = document.getElementById("game");
+// console.log(gameContainer);
 const COLORS = [
   "red",
   "blue",
@@ -37,18 +37,24 @@ function shuffle(array) {
 }
 
 let shuffledColors = shuffle(COLORS);
-
+// console.log(shuffledColors);
 // this function loops over the array of colors
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
 function createDivsForColors(colorArray) {
-  for (let color of colorArray) {
+  for (let color in colorArray) {
     // create a new div
     const newDiv = document.createElement("div");
-
     // give it a class attribute for the value we are looping over
-    newDiv.classList.add(color);
+    // const newDiv_inner = document.createElement('div');
+    // const newDiv_front = document.createElement('div');
+    // const newDiv_back = document.createElement('div');
 
+    newDiv.setAttribute('id', `${color}`)
+    newDiv.classList.add(colorArray[color]);
+    newDiv.style.backgroundColor = 'white'; 
+    newDiv.style.borderRadius = '10px';
+    // newDiv.style.border = "1px solid black";
     // call a function handleCardClick when a div is clicked on
     newDiv.addEventListener("click", handleCardClick);
 
@@ -56,12 +62,67 @@ function createDivsForColors(colorArray) {
     gameContainer.append(newDiv);
   }
 }
+// console.log(gameContainer);
+// for(const colors of gameContainer.children){
 
+// }
 // TODO: Implement this function!
+let count = 0;
+let prevCard = 'null';
+let currentCard = 'null';
 function handleCardClick(event) {
   // you can use event.target to see which element was clicked
-  console.log("you clicked",event.target);
+  // console.log(event.target)
+  currentCard = event.target;
+  // console.log('inside handlecardclick function of click event');
+  // console.log(prevCard, currentCard);
+  if(currentCard.style.backgroundColor == 'white'){
+    // console.log('inside if block of click event');
+    currentCard.style.backgroundColor = currentCard.getAttribute('class');
+    // console.log('event')  
+    count++;
+    if(count == 2){
+      count = 0;
+      // console.log(count);
+      // console.log(prevCard, currentCard);
+      const prevColor = prevCard.getAttribute('class');
+      const currColor = currentCard.getAttribute('class');
+      // console.log(currColor, prevColor);
+      if(currColor == prevColor ){
+        prevCard.removeEventListener('click', handleCardClick);
+        currentCard.removeEventListener('click', handleCardClick);
+        // console.log(prevCard, currentCard);
+        // for(const card of gameContainer.children){
+        //   if(card.getAttribute('id') == prevCard.getAttribute('id') || card.getAttribute('id') == currentCard.getAttribute('id')){
+        //     card.removeEventListener('click', );
+        //     console.log(card.getAttribute('id'), prevCard.getAttribute('id'), currentCard.getAttribute('id'));
+        //   }
+        // }
+        // console.log('2 cards matched');
+      }
+      else{
+        prevCard.style.backgroundColor = 'white';
+        currentCard.style.backgroundColor = 'white';
+      }
+    }
+    else{
+      prevCard = currentCard;
+      currentCard = '';
+    } 
+  }
+  else{
+    currentCard.style.backgroundColor = 'white';
+  }
+  
+  // console.log("you clicked",count, 'times');
 }
 
-// when the DOM loads
+// // when the DOM loads
 createDivsForColors(shuffledColors);
+// console.log(gameContainer);
+// const start = document.querySelector('.start');
+// function gotogame(){
+//   console.log('inside gotogame function')
+//   window.location.replace('./game.html');
+// }
+// start.addEventListener('click', gotogame);
