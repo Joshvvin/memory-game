@@ -11,7 +11,10 @@
   flex-basis: 18%;
   height: 40%;
   border: 1px solid black;
-  transition: transform 2s;
+  /* transition: background-color 0.3s; */
+  /* transform: rotateY(180deg); */
+  /* transition-delay: 0.5s; */
+  /* transition-duration: 2s; */
 }
 .container{
   height: 100.4vh;
@@ -23,7 +26,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: antiquewhite;
+  background-color: rgb(218, 217, 217);
 }
 h1{
   flex-basis: 5%;
@@ -45,3 +48,13 @@ h1{
   background-color: blue;
   color: white;
 }
+@media(min-width: 350px) and (max-width: 500px){
+  #game div{
+    flex-basis: 35%;
+    height: 30%;
+  }
+}
+/* .rotate{
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+} */

@@ -78,40 +78,51 @@ function handleCardClick(event) {
   // console.log(prevCard, currentCard);
   if(currentCard.style.backgroundColor == 'white'){
     // console.log('inside if block of click event');
-    currentCard.style.backgroundColor = currentCard.getAttribute('class');
+    // currentCard.style.backgroundColor = 'red';
+    // currentCard.style.backgroundColor = 'blue';
+    currentCard.style.backgroundColor = currentCard.getAttribute('class'); 
+    // currentCard.classList.append('rotate');
+    // const currId = currentCard.getAttribute('id');
     // console.log('event')  
-    count++;
-    if(count == 2){
-      count = 0;
-      // console.log(count);
-      // console.log(prevCard, currentCard);
-      const prevColor = prevCard.getAttribute('class');
-      const currColor = currentCard.getAttribute('class');
-      // console.log(currColor, prevColor);
-      if(currColor == prevColor ){
-        prevCard.removeEventListener('click', handleCardClick);
-        currentCard.removeEventListener('click', handleCardClick);
+    // const prevId = prevCard.getAttribute('id');
+    // console.log(count);
+    // if((prevCard == 'null') || (prevCard != 'null' && prevCard != currentCard)){
+      count++;
+    // }
+      if(count == 2){
+        count = 0;
+        // console.log('inside if', count, prevCard, currentCard);
         // console.log(prevCard, currentCard);
-        // for(const card of gameContainer.children){
-        //   if(card.getAttribute('id') == prevCard.getAttribute('id') || card.getAttribute('id') == currentCard.getAttribute('id')){
-        //     card.removeEventListener('click', );
-        //     console.log(card.getAttribute('id'), prevCard.getAttribute('id'), currentCard.getAttribute('id'));
-        //   }
-        // }
-        // console.log('2 cards matched');
+        // const prevId = prevCard.getAttribute('id');
+        const prevColor = prevCard.getAttribute('class');
+        const currColor = currentCard.getAttribute('class');      
+        // console.log(currId, prevId);
+        if( currColor == prevColor ){
+          prevCard.removeEventListener('click', handleCardClick);
+          currentCard.removeEventListener('click', handleCardClick);
+        }
+        else{
+          setTimeout(()=>{
+            currentCard.style.backgroundColor = 'white';
+            prevCard.style.backgroundColor = 'white';
+          },1000);          
+        }
       }
       else{
-        prevCard.style.backgroundColor = 'white';
-        currentCard.style.backgroundColor = 'white';
-      }
-    }
-    else{
-      prevCard = currentCard;
-      currentCard = '';
-    } 
+        // console.log('inside else', count, prevCard, currentCard);
+        prevCard = currentCard;
+        currentCard = 'null';
+      } 
+    // }
+    // console.log(count);
   }
   else{
     currentCard.style.backgroundColor = 'white';
+    if(prevCard == currentCard){
+      prevCard = 'null';
+    }
+    currentCard = 'null';
+    count = 0;
   }
   
   // console.log("you clicked",count, 'times');
@@ -119,10 +130,3 @@ function handleCardClick(event) {
 
 // // when the DOM loads
 createDivsForColors(shuffledColors);
-// console.log(gameContainer);
-// const start = document.querySelector('.start');
-// function gotogame(){
-//   console.log('inside gotogame function')
-//   window.location.replace('./game.html');
-// }
-// start.addEventListener('click', gotogame);
