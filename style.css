@@ -2,59 +2,195 @@
   /* border: 1px solid black; */
   width: 70%;
   height: 80%;
-  /* margin: 10px; */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  display: none;
 }
 #game div{
   flex-basis: 18%;
   height: 40%;
   border: 1px solid black;
-  /* transition: background-color 0.3s; */
-  /* transform: rotateY(180deg); */
-  /* transition-delay: 0.5s; */
-  /* transition-duration: 2s; */
+}
+#game div:hover{
+  cursor: pointer;
+}
+header{
+  height: 12vh;
+  width: 100vw;
+  margin-left: -10px;
+  margin-top: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: brown;
 }
 .container{
-  height: 100.4vh;
+  height: 88.4vh;
   width: 100.5vw;
-  margin-left: -20px;
+  margin-left: -10px;
   margin-top: -20px;
   /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  row-gap: 20px;
   background-color: rgb(218, 217, 217);
 }
 h1{
-  flex-basis: 5%;
-  height: 20%;
-}
-.display_image{
-  /* height: 10%; */
-  flex-basis: 20%;
-  width: 40%;
+  flex-basis: 80%;
+  height: 45%;
   /* border: 1px solid black; */
+  text-align: center;
+  color: white;
+  /* margin-left: 100px; */
+}
+.display_button{
+  /* border: 1px solid black; */
+  flex-basis: 10%;
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: white; */
+  /* margin-top: -500px; */
 }
 .start{
-  flex-basis: 20%;
-  height: 20%;
-  background-color: blue;
+  flex-basis: 40%;
+  height: 60%;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: brown;
   color: white;
 }
-@media(min-width: 350px) and (max-width: 500px){
+.restart{
+  /* border: 1px solid black; */
+  flex-basis: 10%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  display: none;
+}
+.restart_game{
+  flex-basis: 40%;
+  height: 60%;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: brown;
+  color: white;
+  text-transform: uppercase;
+  font-size: bold;
+  /* border-color: white; */
+}
+.score_container{
+  flex-basis: 10%;
+  width: 90%;
+  /* border: 1px solid black; */
+  display: flex;
+  /* flex-direction: column; */
+  /* margin-top: -70px; */
+  justify-content: center;
+  align-items: center;
+  display: none;
+  /* column-gap: 400px; */
+}
+.score{
+  flex-basis: 15%;
+  height: 30%;
+  /* border: 1px solid black; */
+  font-size: 20px;
+  text-align: center;
+  /* margin-left: 400px; */
+}
+.best_score{
+  flex-basis: 20%;
+  height: 30%;
+  /* border: 1px solid black; */
+  font-size: 20px;
+  text-align: center;
+}
+@media(min-width: 500px) and (max-width: 700px){
+  .container{
+    /* border: 1px solid black; */
+    /* display: none; */
+    justify-content: start;
+  }
+  #game{
+    /* border: 1px solid black; */
+    /* margin-top: -300px; */
+  } 
+  header{
+    /* border: 1px solid black; */
+  }
+  .score_container{
+    /* border: 1px solid black; */
+    justify-content: center;
+  }
+  .score_container div{
+    flex-basis:40%;
+    /* border: 1px solid black; */
+  }
+  .display_button{
+    /* border: 1px solid black; */
+    margin-top: 300px;
+  }
+  .start{
+    flex-basis: 90%;
+  }
   #game div{
-    flex-basis: 35%;
-    height: 30%;
+    flex-basis: 40%;
+    height: 16%;
+  }
+  .restart{
+    flex-basis: 8%;
+    /* border: 1px solid black; */
+  }
+  .restart_game{
+    flex-basis: 70%;
+    height: 75%;
+    font-size: 18px;
   }
 }
-/* .rotate{
-  transform: rotateY(180deg);
-  backface-visibility: hidden;
-} */
+@media(min-width: 350px) and (max-width: 499px){
+  .container{
+    /* border: 1px solid black; */
+    /* display: none; */
+    justify-content: start;
+  }
+  #game{
+    /* border: 1px solid black; */
+    /* margin-top: -300px; */
+  } 
+  header{
+    /* border: 1px solid black; */
+  }
+  .score_container{
+    /* border: 1px solid black; */
+    justify-content: center;
+  }
+  .score_container div{
+    flex-basis:40%;
+    /* border: 1px solid black; */
+  }
+  .display_button{
+    /* border: 1px solid black; */
+    margin-top: 300px;
+  }
+  .start{
+    flex-basis: 90%;
+  }
+  #game div{
+    flex-basis: 40%;
+    height: 16%;
+  }
+  .restart{
+    flex-basis: 8%;
+    /* border: 1px solid black; */
+  }
+  .restart_game{
+    flex-basis: 80%;
+    height: 75%;
+    font-size: 16px;
+  }
+}
