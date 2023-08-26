@@ -39,38 +39,52 @@ function createDivsForColors(colorArray, size) {
       last_div = ind;
     }
   }
-  console.log(size, last_div, size/last_div);
   let ind_width = Math.floor(100/(size/last_div)) - 1;
   // console.log(ind_width, last_div, size);
-  let ind_height = Math.floor(100/(last_div)) - 1;
-  // console.log(ind_height, last_div, size);
+  let ind_height = Math.floor(100/(last_div)) - 2;
+  const low_size = Math.min(last_div, size/last_div);
+  const max_size = Math.max(last_div, size/last_div);
 
-  if(screen.width < 700 && screen.width > 350){
-    // console.log('width less than 700px');
-    const low_size = Math.min(last_div, size/last_div);
-    const max_size = Math.max(last_div, size/last_div);
-    console.log(low_size, max_size);
-    // console.log(low_size, max_size);
-    // console.log('width less than 700px');
-    ind_width = Math.floor(100/(low_size)) - 1;
-    ind_height = Math.floor(100/(max_size)) - 1;
-    // console.log(ind_width, ind_height);
-  }
+  // console.log(low_size, max_size);
+  ind_width = Math.floor(100/(low_size)) - 1;
+  ind_height = Math.floor(100/(max_size)) - 1;
+  
+  // // if(low_size <= 3 || max_size <= 3){
+    
+  // // }
+  // // if(low_size <= 3){
+  // //   ind_width = Math.floor(100/low_size) -5;
+  // // }
+  // console.log(ind_width, ind_height);
+  // if(screen.width < 700 && screen.width > 350){
+  //   // console.log('width less than 700px');
+  //   console.log(low_size, max_size);
+  //   // console.log(low_size, max_size);
+  //   // console.log('width less than 700px');
+  //  // console.log(ind_width, ind_height);
+  // }
   
 
   // for(let ind = 0; ind < 2; ind++){
     // })
+    // console.log('inside create');
     for (let color in colorArray) {
       // create a new div
+      //  console.log(colorArray[color]);
       const newDiv = document.createElement("div");
       newDiv.setAttribute('id', `${index_count}`)
       newDiv.classList.add(colorArray[color]);
       newDiv.style.backgroundColor = 'white'; 
       newDiv.style.borderRadius = '10px';
-     
-      newDiv.style.width = `${ind_width}%`;
-      
-      newDiv.style.height = `${ind_height}%`;
+      // if(low_size == 2){
+      //   newDiv.style.width = '18%';
+      //   newDiv.style.height = '20%';
+      // }
+      // else{
+        // newDiv.style.width = `${ind_width}%`;
+        
+        // newDiv.style.height = `${ind_height}%`;
+      // }
       // newDiv.style.border = "1px solid black";
       // call a function handleCardClick when a div is clicked on
       newDiv.addEventListener("click", handleCardClick);
@@ -105,87 +119,61 @@ function handleCardClick(event) {
   const score_var = document.querySelector('.score_var');
   // score_var.textContent = score;
   if(currentCard.style.backgroundColor == 'white'){
-    // console.log('inside if block of click event');
-    // currentCard.style.backgroundColor = 'red';
-    // currentCard.style.backgroundColor = 'blue';
     currentCard.style.backgroundColor = currentCard.getAttribute('class'); 
-    currentCard.removeEventListener('click', handleCardClick);
-    // currentCard.classList.append('rotate');
-    // const currId = currentCard.getAttribute('id');
-    // console.log('event')  
-    // const prevId = prevCard.getAttribute('id');
-    // console.log(count);
-    // if((prevCard == 'null') || (prevCard != 'null' && prevCard != currentCard)){
-      count++;
-      // }
-      // console.log(localStorage.getItem('score'));
-      
-      // const sc = localStorage.getItem('score');
-      // console.log(sc);
-      if(count == 2){
-        score++;
-        score_var.textContent = score;
-        count = 0;
-        // console.log('inside if', count, prevCard, currentCard);
-        // console.log(prevCard, currentCard);
-        
-        // const prevId = prevCard.getAttribute('id');
-        const prevColor = prevCard.getAttribute('class');
-        const currColor = currentCard.getAttribute('class');      
-        // console.log(currId, prevId);px
-        if( currColor == prevColor ){
-          prevCard.removeEventListener('click', handleCardClick);
-          c+=2;
-          // let c = 0;
-          // for(const card of gameContainer.children){
-          //   // console.log(card.getAttribute('class'), card.style.backgroundColor);
-          //   if(card.getAttribute('class') == card.style.backgroundColor){
-          //     c++;
-          //   }
-          // }
-          console.log(c);
-          if(c >= gameContainer.children.length){
-            const score_cont = document.querySelector('.score_var');
-            const bestscore_cont = document.querySelector('.bestscore');
-            // console.log(score.textContent, bestscore.textContent, localStorage.getItem('score'));
-            const score = parseInt(score_cont.textContent);
-            let bestscore = parseInt(bestscore_cont.textContent);
-            const locstore = parseInt(localStorage.getItem('score'));
-            // console.log(score, bestscore, locstore);
-            if(score < locstore){
-              // console.log('inside score < locstore');
-              bestscore = score;
-              bestscore_cont.textContent = bestscore;
-              localStorage.setItem('score', score);
-            }
-            // console.log('outside if');
-            const restart = document.querySelector('.restart');
-            restart.style.display = 'flex';   
-            // console.log(score, bestscore.textContent, localStorage.getItem('score'));
+    count++;
+    if(count == 2){
+      score++;
+      score_var.textContent = score;
+      count = 0;
+      const prevColor = prevCard.getAttribute('class');
+      const currColor = currentCard.getAttribute('class');      
+      // console.log(currId, prevId);px
+      if(currColor == prevColor ){
+        currentCard.removeEventListener('click', handleCardClick);
+        prevCard.removeEventListener('click', handleCardClick);
+        c += 2;
+        if(c >= gameContainer.children.length){
+          const score_cont = document.querySelector('.score_var');
+          const bestscore_cont = document.querySelector('.bestscore');
+          // console.log(score.textContent, bestscore.textContent, localStorage.getItem('score'));
+          const score = parseInt(score_cont.textContent);
+          let bestscore = parseInt(bestscore_cont.textContent);
+          const locstore = parseInt(localStorage.getItem('score'));
+          // console.log(score, bestscore, locstore);
+          if(score < locstore){
+            // console.log('inside score < locstore');
+            bestscore = score;
+            bestscore_cont.textContent = bestscore;
+            localStorage.setItem('score', score);
           }
-        }
-        else{         
-          for(const card of gameContainer.children){
-            if(card.getAttribute('id') != currentCard.getAttribute('id') && card.getAttribute('id') != prevCard.getAttribute('id')){
-              card.removeEventListener('click', handleCardClick);
-            }
-          }
-          setTimeout(()=>{
-            currentCard.style.backgroundColor = 'white';
-            prevCard.style.backgroundColor = 'white';
-            for(const card of gameContainer.children){
-              // if(card.getAttribute('id') != currentCard.getAttribute('id') && card.getAttribute('id') != prevCard.getAttribute('id')){
-                card.addEventListener('click', handleCardClick);
-              // }
-            }
-          },1000);          
+          // console.log('outside if');
+          const restart = document.querySelector('.restart');
+          restart.style.display = 'flex';   
+          // console.log(score, bestscore.textContent, localStorage.getItem('score'));
         }
       }
-      else{
-        // console.log('inside else', count, prevCard, currentCard);
-        prevCard = currentCard;
-        currentCard = 'null';
-      } 
+      else{         
+        for(const card of gameContainer.children){
+          // if(card.getAttribute('id') != currentCard.getAttribute('id') && card.getAttribute('id') != prevCard.getAttribute('id')){
+            card.removeEventListener('click', handleCardClick);
+        }
+        setTimeout(()=>{
+          currentCard.style.backgroundColor = 'white';
+          prevCard.style.backgroundColor = 'white';
+          for(const card of gameContainer.children){
+            // console.log(card.getAttribute('class'), card.style.backgroundColor);
+            if(card.getAttribute('class') != card.style.backgroundColor.split(' ').join('')){
+              card.addEventListener('click', handleCardClick);
+            }
+          }
+        },1000); 
+      }                   
+    }
+    else{
+      // console.log('inside else', count, prevCard, currentCard);
+      prevCard = currentCard;
+      currentCard = 'null';
+    } 
     // }
     // console.log(count);
   }
@@ -230,7 +218,7 @@ function startgame(){
   const score_container = document.querySelector('.score_container');
   score_container.style.display = 'flex';
   const container = document.querySelector('.container');
-  // container.style.justifyContent = 'space-between';
+  container.style.justifyContent = 'start';
 }
 start.addEventListener('click', startgame);
 
@@ -241,9 +229,6 @@ function restartgame(){
   gameContainer.style.display = 'flex';
   score = 0;
   c = 0;
-  // let shuffledColors = shuffle(COLORS);
-  // console.log(shuffledColors);
-  // createDivsForColors(shuffledColors, randomNumber*2);
   const score_cont = document.querySelector('.score_var');
   score_cont.textContent = score;
   for(const card of gameContainer.children){
