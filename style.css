@@ -1,15 +1,16 @@
  #game{
   /* border: 1px solid black; */
-  width: 70%;
+  width: 80%;
   height: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   display: none;
 }
 #game div{
-  flex-basis: 18%;
-  height: 40%;
+  /* flex-basis: 18%;
+  height: 20%; */
   border: 1px solid black;
 }
 #game div:hover{
@@ -139,8 +140,8 @@ h1{
     flex-basis: 90%;
   }
   #game div{
-    flex-basis: 40%;
-    height: 16%;
+    /* flex-basis: 40%;
+    height: 16%; */
   }
   .restart{
     flex-basis: 8%;
@@ -181,8 +182,8 @@ h1{
     flex-basis: 90%;
   }
   #game div{
-    flex-basis: 40%;
-    height: 16%;
+    /* flex-basis: 40%;
+    height: 16%; */
   }
   .restart{
     flex-basis: 8%;

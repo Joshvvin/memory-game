@@ -1,18 +1,22 @@
 const gameContainer = document.getElementById("game");
 // console.log(gameContainer);
 const COLORS = [
-  "red",
-  "blue",
-  "green",
-  "orange",
-  "purple",
-  "red",
-  "blue",
-  "green",
-  "orange",
-  "purple"
+  // "red",
+  // "blue",
+  // "green",
+  // "orange",
+  // "purple"
+  // "red",
+  // "blue",
+  // "green",
+  // "orange",
+  // "purple",
+  // 'rgb(0,0,0)',
+  // 'red',
+  // 'blue'
+  // 'red'
 ];
-
+// console.log(COLORS);
 // here is a helper function to shuffle an array
 // it returns the same array with values shuffled
 // it is based on an algorithm called Fisher Yates if you want ot research more
@@ -36,37 +40,69 @@ function shuffle(array) {
   return array;
 }
 
-let shuffledColors = shuffle(COLORS);
-// console.log(shuffledColors);
+
 // this function loops over the array of colors
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
-function createDivsForColors(colorArray) {
-  for (let color in colorArray) {
-    // create a new div
-    const newDiv = document.createElement("div");
-    // give it a class attribute for the value we are looping over
-    // const newDiv_inner = document.createElement('div');
-    // const newDiv_front = document.createElement('div');
-    // const newDiv_back = document.createElement('div');
+// console.log(gameContainer);
+function createDivsForColors(colorArray, size) {
+  // console.log(colorArray, randomNumber);
+  let index_count = 0;
+  let last_div = 1;
+  for(let ind = 2; ind < size/2; ind ++){
+    if(size%ind == 0){
+      last_div = ind;
+    }
+  }
+  // console.log(size, last_div, size/last_div);
+  let ind_width = Math.floor(100/(size/last_div)) - 1;
+  // console.log(ind_width, last_div, size);
+  let ind_height = Math.floor(100/(last_div)) - 2;
+  if(screen.width < 700 && screen.width > 500){
+    console.log('width less than 700px');
+    const low_size = Math.min(last_div, size/last_div);
+    const max_size = Math.max(last_div, size/last_div);
+    console.log(low_size, max_size);
+    // console.log('width less than 700px');
+    ind_width = Math.floor(100/(low_size)) - 1;
+    ind_height = Math.floor(100/(max_size)) - 1;
+    console.log(ind_width, ind_height);
+  }
+  
 
-    newDiv.setAttribute('id', `${color}`)
-    newDiv.classList.add(colorArray[color]);
-    newDiv.style.backgroundColor = 'white'; 
-    newDiv.style.borderRadius = '10px';
-    // newDiv.style.border = "1px solid black";
-    // call a function handleCardClick when a div is clicked on
-    newDiv.addEventListener("click", handleCardClick);
-
-    // append the div to the element with an id of game
-    gameContainer.append(newDiv);
+  for(let ind = 0; ind < 2; ind++){
+    // })
+    for (let color in colorArray) {
+      // create a new div
+      const newDiv = document.createElement("div");
+      newDiv.setAttribute('id', `${index_count}`)
+      newDiv.classList.add(colorArray[color]);
+      newDiv.style.backgroundColor = 'white'; 
+      newDiv.style.borderRadius = '10px';
+     
+      newDiv.style.width = `${ind_width}%`;
+      
+      newDiv.style.height = `${ind_height}%`;
+      // newDiv.style.border = "1px solid black";
+      // call a function handleCardClick when a div is clicked on
+      newDiv.addEventListener("click", handleCardClick);
+      // append the div to the element with an id of game
+      gameContainer.append(newDiv);
+      // console.log(gameContainer);
+      index_count++;
+    }
   }
 }
 // console.log(gameContainer);
 // for(const colors of gameContainer.children){
 
 // }
+// let shuffledColors = shuffle(COLORS);
+
+//   // console.log(shuffledColors);
+//   createDivsForColors(shuffledColors);
 // TODO: Implement this function!
+let c = 0;
 let count = 0;
 let prevCard = 'null';
 let currentCard = 'null';
@@ -111,12 +147,15 @@ function handleCardClick(event) {
         // console.log(currId, prevId);
         if( currColor == prevColor ){
           prevCard.removeEventListener('click', handleCardClick);
-          let c = 0;
-          for(const card of gameContainer.children){
-            if(card.getAttribute('class') == card.style.backgroundColor){
-              c++;
-            }
-          }
+          c+=2;
+          // let c = 0;
+          // for(const card of gameContainer.children){
+          //   // console.log(card.getAttribute('class'), card.style.backgroundColor);
+          //   if(card.getAttribute('class') == card.style.backgroundColor){
+          //     c++;
+          //   }
+          // }
+          // console.log(c);
           if(c == gameContainer.children.length){
             const score_cont = document.querySelector('.score_var');
             const bestscore_cont = document.querySelector('.bestscore');
@@ -175,10 +214,27 @@ function handleCardClick(event) {
 }
 
 // // when the DOM loads
-createDivsForColors(shuffledColors);
 
+let randomNumber = 10;
 const start = document.querySelector('.start');
 function startgame(){
+  randomNumber = Math.floor(Math.random()*5 + 5);
+  // console.log(randomNumber*2);
+  for(let ind = 0; ind < randomNumber; ind++){
+    const r = Math.floor(Math.random()*256);
+    const g = Math.floor(Math.random()*256);
+    const b = Math.floor(Math.random()*256);
+    // console.log(r,g,b);
+    const color = `rgb(${r},${g},${b})`;
+    // console.log(color);
+    // console.log(color);
+    // console.log(rgb(r,g,b));
+    COLORS.push(color);
+  }
+  let shuffledColors = shuffle(COLORS);
+  // console.log(shuffledColors);
+  createDivsForColors(shuffledColors, randomNumber*2);
+  
   const display_button = document.querySelector('.display_button');
   display_button.style.display = 'none';
   gameContainer.style.display = 'flex';
@@ -195,6 +251,9 @@ function restartgame(){
   restart.style.display = 'none';
   gameContainer.style.display = 'flex';
   score = 0;
+  let shuffledColors = shuffle(COLORS);
+  // console.log(shuffledColors);
+  createDivsForColors(shuffledColors, randomNumber*2);
   const score_cont = document.querySelector('.score_var');
   score_cont.textContent = score;
   for(const card of gameContainer.children){
