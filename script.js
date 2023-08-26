@@ -1,21 +1,6 @@
 const gameContainer = document.getElementById("game");
 // console.log(gameContainer);
-const COLORS = [
-  // "red",
-  // "blue",
-  // "green",
-  // "orange",
-  // "purple"
-  // "red",
-  // "blue",
-  // "green",
-  // "orange",
-  // "purple",
-  // 'rgb(0,0,0)',
-  // 'red',
-  // 'blue'
-  // 'red'
-];
+const COLORS = [];
 // console.log(COLORS);
 // here is a helper function to shuffle an array
 // it returns the same array with values shuffled
@@ -54,23 +39,26 @@ function createDivsForColors(colorArray, size) {
       last_div = ind;
     }
   }
-  // console.log(size, last_div, size/last_div);
+  console.log(size, last_div, size/last_div);
   let ind_width = Math.floor(100/(size/last_div)) - 1;
   // console.log(ind_width, last_div, size);
-  let ind_height = Math.floor(100/(last_div)) - 2;
-  if(screen.width < 700 && screen.width > 500){
-    console.log('width less than 700px');
+  let ind_height = Math.floor(100/(last_div)) - 1;
+  // console.log(ind_height, last_div, size);
+
+  if(screen.width < 700 && screen.width > 350){
+    // console.log('width less than 700px');
     const low_size = Math.min(last_div, size/last_div);
     const max_size = Math.max(last_div, size/last_div);
     console.log(low_size, max_size);
+    // console.log(low_size, max_size);
     // console.log('width less than 700px');
     ind_width = Math.floor(100/(low_size)) - 1;
     ind_height = Math.floor(100/(max_size)) - 1;
-    console.log(ind_width, ind_height);
+    // console.log(ind_width, ind_height);
   }
   
 
-  for(let ind = 0; ind < 2; ind++){
+  // for(let ind = 0; ind < 2; ind++){
     // })
     for (let color in colorArray) {
       // create a new div
@@ -91,7 +79,7 @@ function createDivsForColors(colorArray, size) {
       // console.log(gameContainer);
       index_count++;
     }
-  }
+  // }
 }
 // console.log(gameContainer);
 // for(const colors of gameContainer.children){
@@ -144,7 +132,7 @@ function handleCardClick(event) {
         // const prevId = prevCard.getAttribute('id');
         const prevColor = prevCard.getAttribute('class');
         const currColor = currentCard.getAttribute('class');      
-        // console.log(currId, prevId);
+        // console.log(currId, prevId);px
         if( currColor == prevColor ){
           prevCard.removeEventListener('click', handleCardClick);
           c+=2;
@@ -155,15 +143,15 @@ function handleCardClick(event) {
           //     c++;
           //   }
           // }
-          // console.log(c);
-          if(c == gameContainer.children.length){
+          console.log(c);
+          if(c >= gameContainer.children.length){
             const score_cont = document.querySelector('.score_var');
             const bestscore_cont = document.querySelector('.bestscore');
             // console.log(score.textContent, bestscore.textContent, localStorage.getItem('score'));
             const score = parseInt(score_cont.textContent);
             let bestscore = parseInt(bestscore_cont.textContent);
             const locstore = parseInt(localStorage.getItem('score'));
-            console.log(score, bestscore, locstore);
+            // console.log(score, bestscore, locstore);
             if(score < locstore){
               // console.log('inside score < locstore');
               bestscore = score;
@@ -230,6 +218,7 @@ function startgame(){
     // console.log(color);
     // console.log(rgb(r,g,b));
     COLORS.push(color);
+    COLORS.push(color);
   }
   let shuffledColors = shuffle(COLORS);
   // console.log(shuffledColors);
@@ -251,9 +240,10 @@ function restartgame(){
   restart.style.display = 'none';
   gameContainer.style.display = 'flex';
   score = 0;
-  let shuffledColors = shuffle(COLORS);
+  c = 0;
+  // let shuffledColors = shuffle(COLORS);
   // console.log(shuffledColors);
-  createDivsForColors(shuffledColors, randomNumber*2);
+  // createDivsForColors(shuffledColors, randomNumber*2);
   const score_cont = document.querySelector('.score_var');
   score_cont.textContent = score;
   for(const card of gameContainer.children){
