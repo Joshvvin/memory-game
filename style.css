@@ -194,4 +194,15 @@ h1{
     height: 75%;
     font-size: 16px;
   }
+  
+}
+@media(max-height: 700px){
+  header{
+    border: 1px solid black;
+  }
+  h1{
+    /* border: 1px solid black; */
+    /* justify-content: start; */
+    margin-top: 0;
+  }
 }
