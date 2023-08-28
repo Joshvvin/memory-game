@@ -58,7 +58,7 @@ function createDivsForColors(colorArray, size) {
   // console.log(ind_width, ind_height);
   // if(screen.width < 700 && screen.width > 350){
   //   // console.log('width less than 700px');
-  //   console.log(low_size, max_size);
+    console.log(low_size, max_size);
   //   // console.log(low_size, max_size);
   //   // console.log('width less than 700px');
   //  // console.log(ind_width, ind_height);
@@ -194,8 +194,20 @@ function handleCardClick(event) {
 let randomNumber = 10;
 const start = document.querySelector('.start');
 function startgame(){
-  randomNumber = Math.floor(Math.random()*5 + 5);
+  randomNumber = Math.floor(Math.random()*10 + 5);
   // console.log(randomNumber*2);
+  // console.log(randomNumber);
+  // if(randomNumber%6 != 0){
+  //   randomNumber += (6-randomNumber%6)/2;
+  // }
+  // console.log((randomNumber*2)%6);
+  if((randomNumber*2)%6 != 0){
+    randomNumber += (6-(randomNumber*2)%6)/2;
+  }
+  // console.log(randomNumber);
+  // if(randomNumber == 5 || randomNumber == 7 || randomNumber == 11){
+  //   randomNumber += 1;
+  // }
   for(let ind = 0; ind < randomNumber; ind++){
     const r = Math.floor(Math.random()*256);
     const g = Math.floor(Math.random()*256);
