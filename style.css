@@ -3,7 +3,7 @@
   height: 100vh;
  }
  #game{
-  border: 1px solid white;
+  /* border: 1px solid white; */
   width: 90%;
   flex-basis: 75%;
   display: flex;
@@ -26,8 +26,8 @@
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 80px;
-  /* margin-top: -10%; */
+  font-size: 70px;
+  margin-top: -5%;
   /* border: 1px solid white; */
   /* background-color: brown; */
 }
@@ -41,13 +41,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 120px;
+  row-gap: 80px;
   background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.5)), url('background_image2.jpg');
-  object-fit: cover;
-  /* background-size: 100% 100%; */
+  object-fit: contain;
+  background-size: 100% 100%;
   /* background-blend-mode:; */
   /* background-repeat: no-repeat; */
   /* background-color: rgb(218, 217, 217); */
+}
+.container div{
+  /* border: 1px solid white; */
 }
 .instructions{
   display: flex;
@@ -73,7 +76,7 @@
 .start{
   flex-basis: 40%;
   height: 60%;
-  font-size: 20px;
+  font-size: 23px;
   border-radius: 10px;
   /* background-color: brown; */
   text-transform: uppercase;
@@ -126,7 +129,7 @@
   /* margin-left: 400px; */
 }
 .best_score{
-  flex-basis: 20%;
+  flex-basis: 40%;
   height: 40%;
   /* border: 1px solid white; */
   font-size: 25px;
@@ -148,12 +151,24 @@
 }
 @media(min-width: 500px) and (max-width: 700px){
   .container{
-    /* border: 1px solid black; */
+    /* border: 1px solid white; */
     /* display: none; */
-    justify-content: center;
+    /* justify-content: end; */
+    /* row-gap: 0; */
+  }
+  .instructions{
+    font-size: 22px;
+    width: 80%;
+    text-align: center;
+  }
+  .container div{
+    /* border: 1px solid white; */
+  }
+  .header{
+    font-size: 50px;
   }
   #game{
-    /* border: 1px solid black; */
+    /* border: 1px solid white; */
     /* margin-top: -300px; */
     /* margin-top: -20px; */
     flex-basis: 75%;
@@ -165,8 +180,9 @@
     align-items: end;
   }
   .score_container div{
-    flex-basis:30%;
+    flex-basis:50%;
     height: 60%;
+    font-size: 22px;
     /* border: 1px solid black; */
   }
   .start{
@@ -191,29 +207,43 @@
   .container{
     /* border: 1px solid black; */
     /* display: none; */
-    justify-content: start;
+    justify-content: space-evenly;
+    row-gap: 0px;
+  }
+  .container div{
+    /* border: 1px solid white; */
   }
   #game{
     /* border: 1px solid black; */
     /* margin-top: -20px; */
   } 
-  header{
-    /* border: 1px solid black; */
+  .header{
+    font-size: 40px;
+    /* margin-top: -40%; */
+  }
+  .instructions{
+    font-size: 18px;
+    width: 85%;
+    text-align: center;
   }
   .score_container{
     /* border: 1px solid black; */
     justify-content: center;
   }
   .score_container div{
-    flex-basis:45%;
+    flex-basis:50%;
+    font-size: 21px;
+
     /* border: 1px solid black; */
   }
   .display_button{
     /* border: 1px solid black; */
-    margin-top: 300px;
+    /* margin-top: 300px; */
+    width: 60%;
   }
   .start{
     flex-basis: 90%;
+    font-size: 19px;
   }
   #game div{
     flex-basis: 25%;
@@ -222,28 +252,16 @@
   .restart{
     flex-basis: 8%;
     /* border: 1px solid black; */
-    /* display: flex; */
+    display: flex;
   }
   .restart_game{
-    flex-basis: 80%;
+    flex-basis: 90%;
     height: 75%;
     font-size: 16px;
   }
   
 }
 @media(max-height: 750px){
-  header{
-    /* border: 1px solid black; */
-  }
-  h1{
-    /* border: 1px solid black; */
-    /* justify-content: start; */
-    margin-top: 0;
-  }
-  .display_button{
-    /* border: 1px solid black; */
-    /* margin-top: 70%; */
-  }
   .start{
     font-size: 17px;
   }
