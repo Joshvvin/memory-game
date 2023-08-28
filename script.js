@@ -225,12 +225,19 @@ function startgame(){
   createDivsForColors(shuffledColors, randomNumber*2);
   
   const display_button = document.querySelector('.display_button');
+  const header = document.querySelector('.header');
+  header.style.display = 'none';
+  // const score_cont
   display_button.style.display = 'none';
   gameContainer.style.display = 'flex';
-  const score_container = document.querySelector('.score_container');
-  score_container.style.display = 'flex';
+  const score_cont = document.querySelector('.score');
+  score_cont.style.display = 'flex';
+  const instructions = document.querySelector('.instructions');
+  instructions.style.display = 'none';
+  score_cont.style.justifyContent = 'center';
   const container = document.querySelector('.container');
   container.style.justifyContent = 'start';
+  container.style.rowGap = '20px';
 }
 start.addEventListener('click', startgame);
 
