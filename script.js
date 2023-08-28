@@ -194,7 +194,7 @@ function handleCardClick(event) {
 let randomNumber = 10;
 const start = document.querySelector('.start');
 function startgame(){
-  randomNumber = Math.floor(Math.random()*10 + 5);
+  randomNumber = Math.floor(Math.random()*7 + 5);
   // console.log(randomNumber*2);
   // console.log(randomNumber);
   // if(randomNumber%6 != 0){

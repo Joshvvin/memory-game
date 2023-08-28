@@ -10,7 +10,7 @@
 }
 #game div{
   flex-basis: 15%;
-  height: 20%;
+  height: 18%;
   border: 1px solid black;
 }
 #game div:hover{
@@ -155,7 +155,7 @@ h1{
     flex-basis: 90%;
   }
   #game div{
-    flex-basis: 23%;
+    flex-basis: 15%;
     height: 15%;
   }
   .restart{
@@ -198,8 +198,8 @@ h1{
     flex-basis: 90%;
   }
   #game div{
-    flex-basis: 20%;
-    height: 15%;
+    flex-basis: 25%;
+    height: 10%;
   }
   .restart{
     flex-basis: 8%;
