@@ -252,7 +252,7 @@
   .restart{
     flex-basis: 8%;
     /* border: 1px solid black; */
-    display: flex;
+    /* display: flex; */
   }
   .restart_game{
     flex-basis: 90%;
