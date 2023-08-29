@@ -129,8 +129,7 @@
   display: flex;
   justify-content: center;
   align-items: start;
-
-  /* display: none; */
+  display: none;
 }
 .restart_game{
   flex-basis: 40%;
