@@ -41,7 +41,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 20px;
+  row-gap: 25px;
   background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.5)), url('background_image2.jpg');
   /* object-fit: contain; */
   /* background-size: 100%; */
@@ -182,7 +182,7 @@
   .restart_game{
     font-size: 15px;
   }
-  .start, .diff_elements{
+  .start, #diff, .diff_elements{
     font-size: 17px;
   } 
 }
@@ -191,7 +191,7 @@
     /* border: 1px solid white; */
     /* display: none; */
     /* justify-content: end; */
-    /* row-gap: 0; */
+    row-gap: 10px;
   }
   .instructions{
     font-size: 22px;
@@ -253,8 +253,8 @@
   .container{
     /* border: 1px solid black; */
     /* display: none; */
-    justify-content: space-evenly;
-    row-gap: 0px;
+    /* justify-content: space-evenly; */
+    row-gap: 10px;
   }
   .container div{
     /* border: 1px solid white; */
@@ -312,7 +312,7 @@
   
 }
 @media(max-height: 750px){
-  .start{
+  .start, #diff, .diff_elements{
     font-size: 17px;
   }
 }
