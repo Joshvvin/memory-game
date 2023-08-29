@@ -75,7 +75,7 @@ function createDivsForColors(colorArray, size) {
       newDiv.setAttribute('id', `${index_count}`)
       newDiv.classList.add(colorArray[color]);
       newDiv.style.backgroundColor = 'white';
-      // newDiv.style.backgroundImage = 'url("./")'; 
+      // newDiv.style.backgroundImage = 'url("./94QpIkbEsTtZN.jpg")'; 
       // newDiv.style.backgroundSize = '100% 100%';
       newDiv.style.borderRadius = '10px';
       // if(low_size == 2){
@@ -228,6 +228,8 @@ function startgame(){
   gameContainer.style.display = 'flex';
   const score_cont = document.querySelector('.score');
   score_cont.style.display = 'flex';
+  const diff = document.querySelector('.diff');
+  diff.style.display = 'none';
   const instructions = document.querySelector('.instructions');
   instructions.style.display = 'none';
   score_cont.style.justifyContent = 'center';
