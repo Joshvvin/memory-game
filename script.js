@@ -74,7 +74,9 @@ function createDivsForColors(colorArray, size) {
       const newDiv = document.createElement("div");
       newDiv.setAttribute('id', `${index_count}`)
       newDiv.classList.add(colorArray[color]);
-      newDiv.style.backgroundColor = 'white'; 
+      newDiv.style.backgroundColor = 'white';
+      // newDiv.style.backgroundImage = 'url("./")'; 
+      // newDiv.style.backgroundSize = '100% 100%';
       newDiv.style.borderRadius = '10px';
       // if(low_size == 2){
       //   newDiv.style.width = '18%';
@@ -191,23 +193,17 @@ function handleCardClick(event) {
 
 // // when the DOM loads
 
-let randomNumber = 10;
+let randomNumber = 6;
+const diff_cont = document.querySelector('.difficulty');
 const start = document.querySelector('.start');
 function startgame(){
-  randomNumber = Math.floor(Math.random()*7 + 5);
+  // randomNumber = Math.floor(Math.random()*7 + 5);
   // console.log(randomNumber*2);
   // console.log(randomNumber);
   // if(randomNumber%6 != 0){
   //   randomNumber += (6-randomNumber%6)/2;
   // }
-  // console.log((randomNumber*2)%6);
-  if((randomNumber*2)%6 != 0){
-    randomNumber += (6-(randomNumber*2)%6)/2;
-  }
-  // console.log(randomNumber);
-  // if(randomNumber == 5 || randomNumber == 7 || randomNumber == 11){
-  //   randomNumber += 1;
-  // }
+  // console.log((randomNumber*2)%6);  
   for(let ind = 0; ind < randomNumber; ind++){
     const r = Math.floor(Math.random()*256);
     const g = Math.floor(Math.random()*256);
@@ -223,11 +219,11 @@ function startgame(){
   let shuffledColors = shuffle(COLORS);
   // console.log(shuffledColors);
   createDivsForColors(shuffledColors, randomNumber*2);
-  
   const display_button = document.querySelector('.display_button');
   const header = document.querySelector('.header');
   header.style.display = 'none';
   // const score_cont
+  diff_cont.style.display = 'none';
   display_button.style.display = 'none';
   gameContainer.style.display = 'flex';
   const score_cont = document.querySelector('.score');
@@ -256,3 +252,32 @@ function restartgame(){
   }
 }
 restart_game.addEventListener('click', restartgame);
+const diff = document.querySelector('.diff');
+const difficulty = document.getElementById('diff');
+function setdifficulty(){
+  diff.style.display = 'flex';
+  diff_cont.style.display = 'none';
+}
+difficulty.addEventListener('click', setdifficulty);
+
+const easy = document.getElementById('easy');
+function seteasy(){
+  diff.style.display = 'none';
+  diff_cont.style.display = 'flex';
+  randomNumber = 6;
+}
+easy.addEventListener('click', seteasy);
+const medium = document.getElementById('medium');
+function setmedium(){
+  diff.style.display = 'none';
+  diff_cont.style.display = 'flex';
+  randomNumber = 9;
+}
+medium.addEventListener('click', setmedium);
+const hard = document.getElementById('hard');
+function sethard(){
+  diff.style.display = 'none';
+  diff_cont.style.display = 'flex';
+  randomNumber = 12;
+}
+hard.addEventListener('click', sethard);
