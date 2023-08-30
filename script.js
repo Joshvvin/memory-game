@@ -260,15 +260,24 @@ function startgame(){
     if(localStorage.getItem('easy_score') != 100){
       bestsc.textContent = localStorage.getItem('easy_score');
     }
+    else{
+      bestsc.textContent = 0;
+    }
   }
   else if(levels[1] == 1){
     if(localStorage.getItem('medium_score') != 100){
       bestsc.textContent = localStorage.getItem('medium_score');
     }
+    else{
+      bestsc.textContent = 0;
+    }
   }
   else{
     if(localStorage.getItem('hard_score') != 100){
       bestsc.textContent = localStorage.getItem('hard_score');
+    }
+    else{
+      bestsc.textContent = 0;
     }
   }
   // const diff = document.querySelector('.diff');
