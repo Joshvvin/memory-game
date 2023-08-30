@@ -15,46 +15,57 @@
       <h1>Memory Game</h1>
     </header> -->
     <div class="container">
-      <div class="header">
-        Memory Game
+      <div class="header_container">
+        <div class="header">
+          Memory Game
+        </div>
       </div>
-      <div class="instructions">
-        <div class="insts">
-          Complete the game by matching cards of same color
+      <div class="instructions_container">
+        <div class="instructions">
+          <div class="insts">
+            Complete the game by matching cards of same color
+          </div>
+          <div class="insts">
+            Every move counts! 
+          </div>
         </div>
-        <div class="insts">
-          Every move counts! 
-        </div>
-        <!-- <div class="insts">
-          Try to beat the best score!
-        </div> -->
       </div>
-      <div class="score_container">
-        <div class="best_score">
-          Best Score:<span class="bestscore">0</span>
-        </div>
-        <div class="score">
+      <div class="score_container_container">
+        <div class="score_container">
+          <div class="best_score">
+            Best Score: <span class="bestscore">0</span>
+          </div>
+          <div class="score">
             Score: <span class="score_var">0</span>
+          </div>
         </div>
       </div>
-      <div class="difficulty">
-        <button id="diff">Difficulty</button>
+      <div class="difficulty_container">        
+        <div class="difficulty">
+          <button id="diff">Difficulty</button>
+        </div>
+        <div class="diff">
+          <button id="easy" class="diff_elements">Easy</button>
+          <button id="medium" class="diff_elements">medium</button>
+          <button id="hard" class="diff_elements">Hard</button>
+        </div>
       </div>
-      <div class="diff">
-        <button id="easy" class="diff_elements">Easy</button>
-        <button id="medium" class="diff_elements">medium</button>
-        <button id="hard" class="diff_elements">Hard</button>
+        <div class="display_button_container">
+        <div class="display_button">
+          <button class="start">Start Game</button>
+        </div>
       </div>
-      <div class="display_button">
-        <button class="start">Start Game</button>
+      <div class="game_container">
+        <div id="game">
+          
+        </div>
       </div>
-      <div id="game">
-
-      </div>
-      <div class="restart">
-        <button class="restart_game">
-          Restart Game
-        </button>
+      <div class="restart_container">
+        <div class="restart">
+          <button class="restart_game">
+            Restart Game
+          </button>
+        </div>
       </div>
     </div>
 

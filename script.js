@@ -25,7 +25,7 @@ function shuffle(array) {
   return array;
 }
 
-
+const levels = [0,0,0];
 // this function loops over the array of colors
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
@@ -58,7 +58,7 @@ function createDivsForColors(colorArray, size) {
   // console.log(ind_width, ind_height);
   // if(screen.width < 700 && screen.width > 350){
   //   // console.log('width less than 700px');
-    console.log(low_size, max_size);
+    // console.log(low_size, max_size);
   //   // console.log(low_size, max_size);
   //   // console.log('width less than 700px');
   //  // console.log(ind_width, ind_height);
@@ -75,8 +75,8 @@ function createDivsForColors(colorArray, size) {
       newDiv.setAttribute('id', `${index_count}`)
       newDiv.classList.add(colorArray[color]);
       newDiv.style.backgroundColor = 'white';
-      // newDiv.style.backgroundImage = 'url("./94QpIkbEsTtZN.jpg")'; 
-      // newDiv.style.backgroundSize = '100% 100%';
+      // newDiv.style.backgroundImage = 'url("./firewatch-video-games-landscape-artwork-wallpaper-preview.jpg")'; 
+      newDiv.style.backgroundSize = '100% 100%';
       newDiv.style.borderRadius = '10px';
       // if(low_size == 2){
       //   newDiv.style.width = '18%';
@@ -111,7 +111,10 @@ let count = 0;
 let prevCard = 'null';
 let currentCard = 'null';
 let score = 0;
-localStorage.setItem('score', 100);
+// localStorage.setItem('easy_score', 100);
+// localStorage.setItem('medium_score', 100);
+// localStorage.setItem('hard_score', 100);
+
 function handleCardClick(event) {
   // you can use event.target to see which element was clicked
   // console.log(event.target)
@@ -137,17 +140,40 @@ function handleCardClick(event) {
         if(c >= gameContainer.children.length){
           const score_cont = document.querySelector('.score_var');
           const bestscore_cont = document.querySelector('.bestscore');
-          // console.log(score.textContent, bestscore.textContent, localStorage.getItem('score'));
+          console.log(localStorage.getItem('easy_score'), localStorage.getItem('medium_score'), localStorage.getItem('hard_score'));
           const score = parseInt(score_cont.textContent);
           let bestscore = parseInt(bestscore_cont.textContent);
-          const locstore = parseInt(localStorage.getItem('score'));
-          // console.log(score, bestscore, locstore);
-          if(score < locstore){
-            // console.log('inside score < locstore');
-            bestscore = score;
-            bestscore_cont.textContent = bestscore;
-            localStorage.setItem('score', score);
+          let locstore = parseInt(localStorage.getItem('easy_score'));
+          console.log(levels);
+          if(levels[1] == 1){
+            locstore = parseInt(localStorage.getItem('medium_score'));
+            if(score < locstore){
+              // console.log('inside score < locstore');
+              bestscore = score;
+              bestscore_cont.textContent = bestscore;
+              localStorage.setItem('medium_score', score);
+            }
           }
+          else if(levels[2] == 1){
+            locstore = parseInt(localStorage.getItem('hard_score'));
+            if(score < locstore){
+              // console.log('inside score < locstore');
+              bestscore = score;
+              bestscore_cont.textContent = bestscore;
+              localStorage.setItem('hard_score', score);
+            }
+          }
+          else{
+            if(score < locstore){
+              // console.log('inside score < locstore');
+              bestscore = score;
+              bestscore_cont.textContent = bestscore;
+              localStorage.setItem('easy_score', score);
+            }
+          }
+          console.log(localStorage.getItem('easy_score'), localStorage.getItem('medium_score'), localStorage.getItem('hard_score'));
+          // console.log(score, bestscore, locstore);
+          
           // console.log('outside if');
           const restart = document.querySelector('.restart');
           restart.style.display = 'flex';   
@@ -194,8 +220,9 @@ function handleCardClick(event) {
 // // when the DOM loads
 
 let randomNumber = 6;
-const diff_cont = document.querySelector('.difficulty');
+const diff_cont = document.querySelector('.difficulty_container');
 const start = document.querySelector('.start');
+const game_cont = document.querySelector('.game_container');
 function startgame(){
   // randomNumber = Math.floor(Math.random()*7 + 5);
   // console.log(randomNumber*2);
@@ -219,23 +246,40 @@ function startgame(){
   let shuffledColors = shuffle(COLORS);
   // console.log(shuffledColors);
   createDivsForColors(shuffledColors, randomNumber*2);
-  const display_button = document.querySelector('.display_button');
-  const header = document.querySelector('.header');
+  const display_button = document.querySelector('.display_button_container');
+  const header = document.querySelector('.header_container');
   header.style.display = 'none';
   // const score_cont
   diff_cont.style.display = 'none';
   display_button.style.display = 'none';
-  gameContainer.style.display = 'flex';
-  const score_cont = document.querySelector('.score');
+  game_cont.style.display = 'flex';
+  const score_cont = document.querySelector('.score_container_container');
   score_cont.style.display = 'flex';
-  const diff = document.querySelector('.diff');
-  diff.style.display = 'none';
-  const instructions = document.querySelector('.instructions');
+  const bestsc = document.querySelector('.bestscore');
+  if(levels[0] == 1){
+    if(localStorage.getItem('easy_score') != 100){
+      bestsc.textContent = localStorage.getItem('easy_score');
+    }
+  }
+  else if(levels[1] == 1){
+    if(localStorage.getItem('medium_score') != 100){
+      bestsc.textContent = localStorage.getItem('medium_score');
+    }
+  }
+  else{
+    if(localStorage.getItem('hard_score') != 100){
+      bestsc.textContent = localStorage.getItem('hard_score');
+    }
+  }
+  // const diff = document.querySelector('.diff');
+  // diff.style.display = 'none';
+  const instructions = document.querySelector('.instructions_container');
   instructions.style.display = 'none';
   score_cont.style.justifyContent = 'center';
   const container = document.querySelector('.container');
-  container.style.justifyContent = 'start';
-  container.style.rowGap = '20px';
+  container.style.alignItems = 'start';
+  container.style.justifyContent = 'center';
+  // container.style.rowGap = '20px';
 }
 start.addEventListener('click', startgame);
 
@@ -256,30 +300,62 @@ function restartgame(){
 restart_game.addEventListener('click', restartgame);
 const diff = document.querySelector('.diff');
 const difficulty = document.getElementById('diff');
+const difff = document.querySelector('.difficulty');
 function setdifficulty(){
   diff.style.display = 'flex';
-  diff_cont.style.display = 'none';
+  difff.style.display = 'none';
 }
 difficulty.addEventListener('click', setdifficulty);
 
 const easy = document.getElementById('easy');
 function seteasy(){
   diff.style.display = 'none';
-  diff_cont.style.display = 'flex';
+  difff.style.display = 'flex';
+  for(const level in levels){
+    if(level == 0){
+      levels[level] = 1;
+    }
+    else{
+      levels[level] = 0;
+    }
+  }
   randomNumber = 6;
+  // console.log(levels);
 }
 easy.addEventListener('click', seteasy);
+
 const medium = document.getElementById('medium');
 function setmedium(){
   diff.style.display = 'none';
-  diff_cont.style.display = 'flex';
+  difff.style.display = 'flex';
+  for(const level in levels){
+    if(level == 1){
+      levels[level] = 1;
+    }
+    else{
+      levels[level] = 0;
+    }
+  }
   randomNumber = 9;
+  // console.log(levels);
+
 }
 medium.addEventListener('click', setmedium);
+
 const hard = document.getElementById('hard');
 function sethard(){
   diff.style.display = 'none';
-  diff_cont.style.display = 'flex';
+  difff.style.display = 'flex';
+  for(const level in levels){
+    if(level == 2){
+      levels[level] = 1;
+    }
+    else{
+      levels[level] = 0;
+    }
+  }
   randomNumber = 12;
+  // console.log(levels);
+
 }
 hard.addEventListener('click', sethard);
